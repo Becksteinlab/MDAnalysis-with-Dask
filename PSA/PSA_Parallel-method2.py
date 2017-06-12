@@ -46,7 +46,7 @@ def sort_filenames(traj):
 
 # In[8]:
 
-def PSA_hausdorff(Len, Bl_size0, Bl_size1, i_bl, j_bl, k):
+def PSA_hausdorff(Len, Bl_size0, Bl_size1, i_bl, j_bl, k, traj):
     subD = np.zeros([Bl_size0, Bl_size1])
 #     D = pd.DataFrame(index=range(Len), columns=range(Len))
 #     D = D.fillna(0)
@@ -110,7 +110,7 @@ def PSA_Parallel(traj, N_blocks, N_procs, k):
         for jj, j in enumerate(range(0, len(traj), Block_size)):
             print ('i {} and j {}'.format(i,j))
             #-------------------------------------------------------------  
-            D_list.append(delayed(PSA_hausdorff)(len(traj), Bl_size_0[ii], Bl_size_1[jj], i, j, k))
+            D_list.append(delayed(PSA_hausdorff)(len(traj), Bl_size_0[ii], Bl_size_1[jj], i, j, k, traj))
             jj += 1
       
     return D_list
