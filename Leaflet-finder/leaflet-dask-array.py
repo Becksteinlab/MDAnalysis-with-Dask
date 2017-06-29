@@ -68,7 +68,7 @@ with open('data.txt', mode='w') as file:
     for traj in input_data:
         for k in range(3):
             c.restart()
-            c.run_on_scheduler(submitCustomProfiler,'leaflet_{}_{}.txt'.format(traj,jj))
+            c.run_on_scheduler(submitCustomProfiler,'leaflet_{}_{}.txt'.format(traj,k))
 
             start1 = time.time()
             atom = np.load(traj)
