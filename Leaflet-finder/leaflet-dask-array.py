@@ -2,17 +2,23 @@
 import MDAnalysis as mda
 import networkx as nx
 from MDAnalysis.analysis.distances import distance_array
+<<<<<<< HEAD
 import dask
 import dask.array as da
 from dask.delayed import delayed
 from dask.multiprocessing import get
+=======
+import dask.array as da
+>>>>>>> 6b75d875c40fd8f4b72cd3aa710601984f4e421e
 from dask.distributed import Client, progress
-import MDAnalysis as mda
 import numpy as np
 import time, glob, os, sys
+<<<<<<< HEAD
 import scipy
 import networkx as nx
 from scipy import spatial
+=======
+>>>>>>> 6b75d875c40fd8f4b72cd3aa710601984f4e421e
 from scipy.spatial.distance import cdist
 from distributed.diagnostics.plugin import SchedulerPlugin
 from MDAnalysis import Writer
@@ -40,6 +46,7 @@ print (type (Scheduler_IP))
 #print (Client(Scheduler_IP))
 c = Client(Scheduler_IP)
 
+<<<<<<< HEAD
 def Leaflet_finder(block, traj, cutoff, len_atom, len_chunks, block_id=None):
     id_0 = block_id[0]
     id_1 = block_id[1]
@@ -59,6 +66,29 @@ def Leaflet_finder(block, traj, cutoff, len_atom, len_chunks, block_id=None):
     graph.add_edges_from(edges)
     l = np.array({i: item for i, item in enumerate(sorted(nx.connected_components(graph)))}, dtype=np.object).reshape(1,1)
     
+=======
+def Leaflet_finder(block, atoms, cutoff, len_chunks,block_id=None):
+    print('Block Size: {}, Block ID: {}'.format(block.shape,block_id))
+    id_0 = block_id[0]
+    id_1 = block_id[1]
+
+#     print(len_chunks, len(atoms))
+    block[:,:] = cdist(atoms[id_0*len_chunks:(id_0+1)*len_chunks], atoms[id_1*len_chunks:(id_1+1)*len_chunks]) <= cutoff
+    adj_list = np.where(block[:,:] == True)
+    adj_list = np.vstack(adj_list)
+    adj_list[0] = adj_list[0]+id_0*len_chunks
+    adj_list[1] = adj_list[1]+id_1*len_chunks
+    if adj_list.shape[1] == 0:
+        adj_list=np.zeros((2,1))
+
+    graph = nx.Graph()
+    edges = [(adj_list[0,k],adj_list[1,k]) for k in range(0,adj_list.shape[1])]
+    graph.add_edges_from(edges)
+    l = np.array({i: item for i, item
+                  in enumerate(sorted(nx.connected_components(graph)))},
+                 dtype=np.object).reshape(1,1)
+
+>>>>>>> 6b75d875c40fd8f4b72cd3aa710601984f4e421e
     return l
 
 input_data = ['atom_pos_132K.npy','atom_pos_262K.npy','atom_pos_524K.npy']
