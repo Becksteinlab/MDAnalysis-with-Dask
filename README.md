@@ -2,8 +2,7 @@
 
 Code to benchmark parallelization of
 [MDAnalysis](http://mdanalysis.org) with
-[Dask](http://dask.pydata.org/). [1, 2] Supplementary information to
-the SciPy 2017 Proceedings paper [2].
+[Dask](http://dask.pydata.org/) [1, 2, 3] 
 
 
 ## References ##
@@ -16,7 +15,9 @@ the SciPy 2017 Proceedings paper [2].
    O. Beckstein. Parallel analysis in MDAnalysis using the Dask
    parallel computing library. In S. Benthall and S. Rostrup, editors,
    Proceedings of the 16th Python in Science Conference, Austin,
-   TX, 2017. SciPy. **DRAFT (not accepted)**
+   TX, 2017. SciPy. 
    [PR scipy-conference/scipy_proceedings#290](https://github.com/scipy-conference/scipy_proceedings/pull/290)
+3. I. Paraskevakos et al, [Parallel Analysis of Molecular Dynamics Trajectory](https://github.com/radical-papers/midas-paper/tree/master/2016-eScience). In preparation.
+
    
 
