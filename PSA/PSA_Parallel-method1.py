@@ -20,21 +20,6 @@ c = Client(Scheduler_IP)
 print (c.get_versions(check=True))
 print(sys.path)
 
-def sort_filenames(traj):
-    traj_sorted = []
-    import re
-    numbers = re.compile(r'(\d+)')
-    def numericalSort(value):
-        parts = numbers.split(value)
-        parts[1::2] = map(int, parts[1::2])
-        return parts
-
-    for infile in sorted(traj, key=numericalSort):
-        traj_sorted.append(infile)
-        
-    return traj_sorted
-
-
 # In[5]:
 
 def PSA_hausdorff(block, Bl_size0, Bl_size1, i_bl, j_bl):

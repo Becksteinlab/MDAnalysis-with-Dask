@@ -4,19 +4,14 @@ import mdsynthesis as mds
 import pandas as pd
 import dask
 from dask.delayed import delayed
-from dask import multiprocessing
 from dask.multiprocessing import get
 from dask.distributed import Client, progress
 import MDAnalysis as mda
 import numpy as np
 import math
 import time, glob, os, sys
-from MDAnalysis import Writer 
-from mdsynthesis import Sim
 from MDAnalysis.analysis import psa
 import datreant.core as dtr
-import matplotlib
-import matplotlib.pyplot as plt
 
 
 Scheduler_IP = sys.argv[1]
@@ -24,22 +19,6 @@ print (Scheduler_IP)
 print (type (Scheduler_IP))
 c = Client(Scheduler_IP)
 print (mda.__version__)
-
-# In[2]:
-
-def sort_filenames(traj):
-    traj_sorted = []
-    import re
-    numbers = re.compile(r'(\d+)')
-    def numericalSort(value):
-        parts = numbers.split(value)
-        parts[1::2] = map(int, parts[1::2])
-        return parts
-
-    for infile in sorted(traj, key=numericalSort):
-        traj_sorted.append(infile)
-        
-    return traj_sorted
 
 
 # In[8]:
